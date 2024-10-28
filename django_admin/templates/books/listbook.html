@@ -1,0 +1,74 @@
+{% extends "layouts/master.html" %}
+
+{% block vista %}Listado de libros{% endblock %}
+
+{% block contenido %}
+<section>
+        <main class="container">
+	    <header class="py-3">
+	            <h1 class="text-center py-3">Listado de todos los libros</h1>
+	    </header>        
+        <section id=""> 
+            {% if  libros %}
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tiulo</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Valoracion</th>
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                        <tr>
+                            <td>{{libro.titulo}}</td>
+                            <td>{{libro.autor}}</td>
+                            <td>{{libro.valoracion}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            {% else %}
+            <p class="text-center">No existen libro disponibles</p>
+            
+            {% endif %}
+        </section>
+    </main>
+</section>
+<section>
+     <main class="container">
+	    <header class="py-3">
+	            <h1 class="text-center py-3">Libros con valoracion de mayor a 1500</h1>
+	    </header>        
+        <section id=""> 
+            {% if  libros %}
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Tiulo</th>
+                        <th scope="col">Autor</th>
+                        <th scope="col">Valoracion</th>
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for libro in libros %}
+                        {% if libro.valoracion > 1500 %} 
+                            <tr class="table-success">
+                                <td>{{libro.titulo}}</td>
+                                <td>{{libro.autor}}</td>
+                                <td>{{libro.valoracion}}</td>
+                            </tr>
+                        {%endif%}
+                    {% endfor %}
+                </tbody>
+                </table>
+            {% else %}
+            <p class="text-center">No existen libro disponibles</p>
+            
+            {% endif %}
+        </section>
+    </main>
+</section>           
+{% endblock %}
